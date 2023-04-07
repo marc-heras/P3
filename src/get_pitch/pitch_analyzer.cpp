@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 /// Name space of UPC
 namespace upc {
   void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) const {
@@ -14,7 +15,7 @@ namespace upc {
   		/// \TODO Compute the autocorrelation r[l]
       
     }
-
+    int h=0;
     if (r[0] == 0.0F) //to avoid log() and divide zero 
       r[0] = 1e-10; 
   }
