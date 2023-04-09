@@ -6,16 +6,15 @@
 
 using namespace std;
 
-
 /// Name space of UPC
 namespace upc {
   void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) const {
 
     for (unsigned int l = 0; l < r.size(); ++l) {
   		/// \TODO Compute the autocorrelation r[l] \FET
-      for(unsigned int n=0; n< x.size(); ++n){
-          r[l]=x[n]*x[n+l] + r[l];
-          
+      r[l] = 0.0;
+      for(unsigned int n = 0; n < x.size(); ++n){
+          r[l] += x[n] * x[n+l];
       }
       
     }
@@ -67,7 +66,7 @@ namespace upc {
     for (unsigned int i=0; i<x.size(); ++i)
       x[i] *= window[i];
 
-    std:: vector<float> r(npitch_max);
+    /*std::*/ vector<float> r(npitch_max);
 
     //Compute correlation
     autocorrelation(x, r);

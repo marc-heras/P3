@@ -27,7 +27,7 @@ Usage:
 Options:
     -h, --help  Show this screen
     --version   Show the version of the project
-
+    
 Arguments:
     input-wav   Wave file with the audio signal
     output-txt  Output file: ASCII file with the result of the estimation:
