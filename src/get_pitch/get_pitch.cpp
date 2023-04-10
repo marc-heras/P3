@@ -27,6 +27,15 @@ Usage:
 Options:
     -h, --help  Show this screen
     --version   Show the version of the project
+    --preprocess <type> Preprocessing type [default: none].
+                        Type can be:
+                        - 'clip': central clipping
+                        - 'lowpass': low-pass filter
+    --postprocess <type> Postprocessing type [default: none].
+                        Type can be:
+                        - 'median': median filter.
+                        - 'timewarp': time-warping.
+    --median <size>     Size of the median filter [default: 3].
     
 Arguments:
     input-wav   Wave file with the audio signal
@@ -47,6 +56,10 @@ int main(int argc, const char *argv[]) {
 	std::string input_wav = args["<input-wav>"].asString();
 	std::string output_txt = args["<output-txt>"].asString();
 
+  /*std::string preprocess_type = args["--preprocess"].asString();
+  std::string postprocess_type = args["--postprocess"].asString();
+  int median_size = args["--median"].asLong();*/
+
   // Read input sound file
   unsigned int rate;
   vector<float> x;
@@ -64,9 +77,22 @@ int main(int argc, const char *argv[]) {
   /// \TODO
   /// Preprocess the input signal in order to ease pitch estimation. For instance,
   /// central-clipping or low pass filtering may be used.
-  
-  // Iterate for each frame and save values in f0 vector
   vector<float>::iterator iX;
+  //if(preprocess_type == "clip") {
+      for (iX = x.begin(); iX != x.end(); ++iX) {
+        float amp = *iX;
+        if (amp*amp < 0.00001) {
+          *iX = 0;
+        }
+      }
+  //}
+  //else if(preprocess_type == "lowpass") {
+
+  //}*/
+
+
+  // Iterate for each frame and save values in f0 vector
+  //vector<float>::iterator iX;
   vector<float> f0;
   for (iX = x.begin(); iX + n_len < x.end(); iX = iX + n_shift) {
     float f = analyzer(iX, iX + n_len);
@@ -76,6 +102,7 @@ int main(int argc, const char *argv[]) {
   /// \TODO
   /// Postprocess the estimation in order to supress errors. For instance, a median filter
   /// or time-warping may be used.
+
 
   // Write f0 contour into the output file
   ofstream os(output_txt);
