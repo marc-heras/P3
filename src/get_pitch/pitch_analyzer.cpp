@@ -81,8 +81,8 @@ namespace upc {
     ///	   .
 	/// In either case, the lag should not exceed that of the minimum value of the pitch.
     
-    vector<float>::const_iterator iRNeg = r.end();
-    for (vector<float>::const_iterator it = r.begin(); it != r.end(); ++it) {
+    vector<float>::iterator iRNeg = r.end();
+    for (vector<float>::iterator it = r.begin(); it != r.end(); ++it) {
       if (*it < 0) {
         iRNeg = it;
         break;
