@@ -28,10 +28,13 @@ namespace upc {
       return;
 
     window.resize(frameLen);
-
+    win_type = HAMMING;
     switch (win_type) {
     case HAMMING:
       /// \TODO Implement the Hamming window
+      for(unsigned int n=0; n<frameLen; ++n){
+        window[n] = 0.54 - 0.46 * cos(2 * M_PI * n / (frameLen - 1));
+      }
       break;
     case RECT:
     default:
@@ -55,7 +58,17 @@ namespace upc {
     /// \TODO Implement a rule to decide whether the sound is voiced or not.
     /// * You can use the standard features (pot, r1norm, rmaxnorm),
     ///   or compute and use other ones.
-    return false;
+    if(pot > -10){
+      if(r1norm > 0.7 || rmaxnorm > 0.5){ //{1, 0.6} funcionen millor sense Hamming
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+    else{
+      return true;
+    }
   }
 
   float PitchAnalyzer::compute_pitch(vector<float> & x) const {
@@ -98,10 +111,9 @@ namespace upc {
     //You can print these (and other) features, look at them using wavesurfer
     //Based on that, implement a rule for unvoiced
     //change to #if 1 and compile
-#if 1
+#if 0
     if (r[0] > 0.0F)
-      //cout << pot << '\t' << r[1]/r[0] << '\t' << r[lag]/r[0] << endl;
-      cout << lag << endl;
+      cout << pot << '\t' << r[1]/r[0] << '\t' << r[lag]/r[0] << endl;
 #endif
     
     if (unvoiced(pot, r[1]/r[0], r[lag]/r[0]))
