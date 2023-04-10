@@ -81,11 +81,15 @@ namespace upc {
     ///	   .
 	/// In either case, the lag should not exceed that of the minimum value of the pitch.
     
-    iRMax=std::max_element(r.begin(), r.end());
-    
+    vector<float>::const_iterator iRNeg = r.end();
+    for (vector<float>::const_iterator it = r.begin(); it != r.end(); ++it) {
+      if (*it < 0) {
+        iRNeg = it;
+        break;
+      }
+    }
 
-    
-    
+    iRMax=std::max_element(iRNeg, r.end());
 
     unsigned int lag = iRMax - r.begin();
 
@@ -94,9 +98,10 @@ namespace upc {
     //You can print these (and other) features, look at them using wavesurfer
     //Based on that, implement a rule for unvoiced
     //change to #if 1 and compile
-#if 0
+#if 1
     if (r[0] > 0.0F)
-      cout << pot << '\t' << r[1]/r[0] << '\t' << r[lag]/r[0] << endl;
+      //cout << pot << '\t' << r[1]/r[0] << '\t' << r[lag]/r[0] << endl;
+      cout << lag << endl;
 #endif
     
     if (unvoiced(pot, r[1]/r[0], r[lag]/r[0]))
