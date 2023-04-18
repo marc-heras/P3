@@ -27,6 +27,9 @@ Usage:
 Options:
     -h, --help  Show this screen
     --version   Show the version of the project
+    -a REAL, --u_pot=REAL  Umbral de la potencia [DEFAULT: 20]
+    -b REAL, --u_r1=REAL  Umbral r[1]/r[0] [DEFAULT: 0.6]
+    -c REAL, --u_rmax=REAL  Umbral r[lag]/r[0] [DEFAULT: 0.7]
     --preprocess <type> Preprocessing type [default: none].
                         Type can be:
                         - 'clip': central clipping
@@ -55,6 +58,8 @@ int main(int argc, const char *argv[]) {
 
 	std::string input_wav = args["<input-wav>"].asString();
 	std::string output_txt = args["<output-txt>"].asString();
+  float u_r1 = stof(args["--u_r1"].asString());
+  float u_rmax = stof(args["--u_rmax"].asString());
 
   /*std::string preprocess_type = args["--preprocess"].asString();
   std::string postprocess_type = args["--postprocess"].asString();
@@ -72,7 +77,7 @@ int main(int argc, const char *argv[]) {
   int n_shift = rate * FRAME_SHIFT;
 
   // Define analyzer
-  PitchAnalyzer analyzer(n_len, rate, PitchAnalyzer::RECT, 50, 500);
+  PitchAnalyzer analyzer(n_len, rate, PitchAnalyzer::RECT, 50, 500, u_r1,u_rmax);
 
   /// \TODO
   /// Preprocess the input signal in order to ease pitch estimation. For instance,
@@ -81,7 +86,7 @@ int main(int argc, const char *argv[]) {
   //if(preprocess_type == "clip") {
       for (iX = x.begin(); iX != x.end(); ++iX) {
         float amp = *iX;
-        if (amp*amp < 0.00001) {
+        if (amp*amp < 0.000001) {
           *iX = 0;
         }
       }

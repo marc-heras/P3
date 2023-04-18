@@ -28,7 +28,7 @@ namespace upc {
       return;
 
     window.resize(frameLen);
-    win_type = HAMMING; //----------------No se on es selecciona la finestra
+    //win_type = HAMMING; //----------------No se on es selecciona la finestra
     switch (win_type) {
     case HAMMING:
       /// \TODO Implement the Hamming window
@@ -58,12 +58,12 @@ namespace upc {
     /// \TODO Implement a rule to decide whether the sound is voiced or not.
     /// * You can use the standard features (pot, r1norm, rmaxnorm),
     ///   or compute and use other ones.
-    if(pot > -10){
-      if(r1norm > 0.7 || rmaxnorm > 0.5){ //{1, 0.6} funcionen millor sense Hamming
-        return false;
+    if(true){
+      if(r1norm < this->u_r1|| rmaxnorm < this->u_rmax){ //{1, 0.6} funcionen millor sense Hamming
+        return true;
       }
       else{
-        return true;
+        return false;
       }
     }
     else{
