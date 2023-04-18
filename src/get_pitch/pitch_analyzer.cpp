@@ -11,7 +11,9 @@ namespace upc {
   void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) const {
 
     for (unsigned int l = 0; l < r.size(); ++l) {
-  		/// \TODO Compute the autocorrelation r[l] \FET
+  		/// \TODO Compute the autocorrelation r[l] 
+      /// \FET
+      /// Inicialitzem a 0 i calculem la autocorrelació
       r[l] = 0.0;
       for(unsigned int n = 0; n < x.size(); ++n){
           r[l] += x[n] * x[n+l];
