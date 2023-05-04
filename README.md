@@ -24,6 +24,7 @@ Ejercicios básicos
 
     ![captura](img/imagen_1.png)
     ![captura](img/imagen_2.png)
+    En las capturas superiores se pueden apreciar el señal temporal de unos 30ms de duración y un período aproximable de pitch de unos 117Hz. En la parte inferior de estas mismas capturas tenemos el gráfico de la autocorrelación del mismo señal; el valor de dividir la frecuencia de muestreo entre la distáncia entre el primer máximo en el origen (r[0]) y el siguiente resulta también un valor aproximado de 118Hz.
 
    * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la
      autocorrelación. Inserte a continuación el código correspondiente.
