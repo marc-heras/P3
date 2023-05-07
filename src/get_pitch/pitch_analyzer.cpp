@@ -30,7 +30,7 @@ namespace upc {
       return;
 
     window.resize(frameLen);
-    //win_type = HAMMING; //----------------No se on es selecciona la finestra
+    
     switch (win_type) {
     case HAMMING:
       /// \TODO Implement the Hamming window

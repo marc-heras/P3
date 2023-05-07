@@ -38,7 +38,7 @@ Options:
                         Type can be:
                         - 'median': median filter.
                         - 'timewarp': time-warping.
-    --median <size>     Size of the median filter [default: 3].
+    --median <size>     Size of the median filter [default: 1].
     
 Arguments:
     input-wav   Wave file with the audio signal
@@ -60,10 +60,11 @@ int main(int argc, const char *argv[]) {
 	std::string output_txt = args["<output-txt>"].asString();
   float u_r1 = stof(args["--u_r1"].asString());
   float u_rmax = stof(args["--u_rmax"].asString());
+  
 
   /*std::string preprocess_type = args["--preprocess"].asString();
-  std::string postprocess_type = args["--postprocess"].asString();
-  int median_size = args["--median"].asLong();*/
+  std::string postprocess_type = args["--postprocess"].asString();*/
+  unsigned int median_size = stof(args["--median"].asString());
 
   // Read input sound file
   unsigned int rate;
@@ -107,6 +108,32 @@ int main(int argc, const char *argv[]) {
   /// \TODO
   /// Postprocess the estimation in order to supress errors. For instance, a median filter
   /// or time-warping may be used.
+
+    //-----------------------------------------
+    //El código siguiente proporciona un filtro de media 3 de los valores de f0, pero da un resultado peor
+    //por eso, la media por defecto es de 1 (es decir, no hace media)
+  vector<float> f0_postprocessed;
+  if(median_size % 2 != 0){
+  for (long unsigned int i = 0; i < f0.size(); ++i) {
+    // Calcular la media de medida median_size
+    int half = (median_size-1)/2;
+    float sum = 0.0;
+    int count = 0;
+    for (long unsigned int j = i - half; j <= i + half; ++j) {
+        if (j >= 0 && j < f0.size()) {
+            sum += f0[j];
+            count++;
+        }
+    }
+    float average = sum / count;
+
+    // Agregar el valor postprocesado al nuevo vector
+    f0_postprocessed.push_back(average);
+}
+f0.assign(f0_postprocessed.begin(), f0_postprocessed.end());
+  }
+//-----------------------------------------------
+  
 
 
   // Write f0 contour into the output file
