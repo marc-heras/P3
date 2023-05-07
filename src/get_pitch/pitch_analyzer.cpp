@@ -110,6 +110,7 @@ namespace upc {
 
     unsigned int lag = iRMax - r.begin();
 
+
     float pot = 10 * log10(r[0]);
 
     //You can print these (and other) features, look at them using wavesurfer
@@ -120,7 +121,7 @@ namespace upc {
       cout << pot << '\t' << r[1]/r[0] << '\t' << r[lag]/r[0] << '\t' << lag << '\t' << unvoiced(pot, r[1]/r[0], r[lag]/r[0]) << endl;
 #endif
     
-    if (unvoiced(pot, r[1]/r[0], r[lag]/r[0]))
+    if (unvoiced(pot, r[1]/r[0], r[lag]/r[0]) || samplingFreq/lag > 600)
       return 0;
     else
       return (float) samplingFreq/(float) lag;
