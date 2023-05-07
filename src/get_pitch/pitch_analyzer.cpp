@@ -63,7 +63,7 @@ namespace upc {
     /// * You can use the standard features (pot, r1norm, rmaxnorm),
     ///   or compute and use other ones.
     if(true){
-      if((r1norm < this->u_r1 || rmaxnorm < this->u_rmax) && pot < -1){ //{1, 0.6} funcionen millor sense Hamming
+      if((r1norm < this->u_r1 && rmaxnorm < this->u_rmax) || (pot < -12 && (r1norm < this->u_r1 || rmaxnorm < this->u_rmax))){ //{1, 0.6} funcionen millor sense Hamming
         return true;
       }
       else{
@@ -115,9 +115,9 @@ namespace upc {
     //You can print these (and other) features, look at them using wavesurfer
     //Based on that, implement a rule for unvoiced
     //change to #if 1 and compile
-#if 1
+#if 0
     if (r[0] > 0.0F)
-      cout << pot << '\t' << r[1]/r[0] << '\t' << r[lag]/r[0] << endl;
+      cout << pot << '\t' << r[1]/r[0] << '\t' << r[lag]/r[0] << '\t' << lag << '\t' << unvoiced(pot, r[1]/r[0], r[lag]/r[0]) << endl;
 #endif
     
     if (unvoiced(pot, r[1]/r[0], r[lag]/r[0]))
