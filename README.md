@@ -97,6 +97,9 @@ Ejercicios de ampliación
   por implementar el filtro de mediana, se valorará el análisis de los resultados obtenidos en función de
   la longitud del filtro.
    
+   Una parte de ampliación llevada a cabo es la del filtro de mediana como postprocesado. Este filtro no daba buenos resultados, más bien empeoraba la puntuación obtenida sin él, así que como defecto la ventana del filtro tiene un valor 1.
+   A continuación se adjunta un gráfico en el que se pueden observar en la parte inferior (las tres últimas, respectivamente) el fichero f0 obtenido con el programa sin mediana, el fichero f0ref y el fichero f0 con el filtro de mediana aplicado de medida 3:
+   ![captura](img/imagen_3.png)
 
 Evaluación *ciega* del estimador
 -------------------------------
