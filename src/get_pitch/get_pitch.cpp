@@ -28,7 +28,7 @@ Options:
     -h, --help  Show this screen
     --version   Show the version of the project
     -a REAL, --u_pot=REAL  Umbral de la potencia [DEFAULT: 20]
-    -b REAL, --u_r1=REAL  Umbral r[1]/r[0] [DEFAULT: 0.8]
+    -b REAL, --u_r1=REAL  Umbral r[1]/r[0] [DEFAULT: 0.7]
     -c REAL, --u_rmax=REAL  Umbral r[lag]/r[0] [DEFAULT: 0.9]
     --preprocess <type> Preprocessing type [default: none].
                         Type can be:

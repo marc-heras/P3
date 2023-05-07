@@ -49,12 +49,18 @@ Ejercicios básicos
 	    Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que
 		en esta práctica es de 15 ms.
 
+    De acuerdo con el gráfico que se muestra en el siguiente punto, se podía observar que el valor de la potencia para el señal sonoro era habitualmente superior al valor -10. Después, de forma empírica, este valor se ha ajustado a -12; dado que era el que daba una mayor puntuación.
+    Los valores que se encuentran, también con el Wavesurfer, para r1 y rmax coinciden claramente con los que se encontraron en la primera versión del programa de forma empírica.
+
       - Use el estimador de pitch implementado en el programa `wavesurfer` en una señal de prueba y compare
 	    su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica
 		ilustrativa del resultado de ambos estimadores.
      
 		Aunque puede usar el propio Wavesurfer para obtener la representación, se valorará
 	 	el uso de alternativas de mayor calidad (particularmente Python).
+
+    ![captura](img/imagen_4.png)
+    Si se analizan los valores entre el estimador de wavesurfer, el resultado de referencia, y el resultado obtenida a partir del programa, la gran mayoría de valores tienen una diferencia de unos 6-10Hz; lo que indica un cálculo más o menos preciso. Sí que es cierto que en una primera versión del estimador aparecían unos picos al principio de algunos tramos sonoros que eran fruto de un lag (distancia al primer máximo de la autocorrelación) demasiado pequeño. Por ello, se ha obtado por marcar como unvoiced aquellas tramas que proporcionen un lag más pequeño que el que resultaría un pitch superior a 600Hz.
   
   * Optimice los parámetros de su sistema de estimación de pitch e inserte una tabla con las tasas de error
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
@@ -100,6 +106,7 @@ Ejercicios de ampliación
 Una parte de ampliación llevada a cabo es la del filtro de mediana como postprocesado. Este filtro no daba buenos resultados, más bien empeoraba la puntuación obtenida sin él, así que como defecto la ventana del filtro tiene un valor 1.
 A continuación se adjunta un gráfico en el que se pueden observar en la parte inferior (las tres últimas, respectivamente) el fichero f0 obtenido con el programa sin mediana, el fichero f0ref y el fichero f0 con el filtro de mediana aplicado de medida 3:
    ![captura](img/imagen_3.png)
+
 
 Evaluación *ciega* del estimador
 -------------------------------
