@@ -27,17 +27,15 @@ Usage:
 Options:
     -h, --help  Show this screen
     --version   Show the version of the project
-    -a REAL, --u_pot=REAL  Umbral de la potencia [DEFAULT: 20]
+    -a REAL, --u_pot=REAL  Umbral de la potencia [DEFAULT: -12]
     -b REAL, --u_r1=REAL  Umbral r[1]/r[0] [DEFAULT: 0.7]
     -c REAL, --u_rmax=REAL  Umbral r[lag]/r[0] [DEFAULT: 0.9]
     --preprocess <type> Preprocessing type [default: none].
                         Type can be:
                         - 'clip': central clipping
-                        - 'lowpass': low-pass filter
     --postprocess <type> Postprocessing type [default: none].
                         Type can be:
                         - 'median': median filter.
-                        - 'timewarp': time-warping.
     --median <size>     Size of the median filter [default: 1].
     
 Arguments:
@@ -60,7 +58,7 @@ int main(int argc, const char *argv[]) {
 	std::string output_txt = args["<output-txt>"].asString();
   float u_r1 = stof(args["--u_r1"].asString());
   float u_rmax = stof(args["--u_rmax"].asString());
-  
+  float u_pot = stof(args["--u_pot"].asString());
 
   /*std::string preprocess_type = args["--preprocess"].asString();
   std::string postprocess_type = args["--postprocess"].asString();*/
@@ -78,7 +76,7 @@ int main(int argc, const char *argv[]) {
   int n_shift = rate * FRAME_SHIFT;
 
   // Define analyzer
-  PitchAnalyzer analyzer(n_len, rate, PitchAnalyzer::RECT, 50, 500, u_r1, u_rmax);
+  PitchAnalyzer analyzer(n_len, rate, PitchAnalyzer::RECT, 50, 500, u_r1, u_rmax, u_pot);
 
   /// \TODO
   /// Preprocess the input signal in order to ease pitch estimation. For instance,

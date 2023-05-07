@@ -63,7 +63,7 @@ namespace upc {
     /// * You can use the standard features (pot, r1norm, rmaxnorm),
     ///   or compute and use other ones.
     //if(true){
-      if((r1norm < this->u_r1 && rmaxnorm < this->u_rmax) || (pot < -12/* && (r1norm < (this->u_r1) || rmaxnorm < (this->u_rmax))*/)){ //{1, 0.6} funcionen millor sense Hamming
+      if((r1norm < this->u_r1 && rmaxnorm < this->u_rmax) || (pot < this->u_pot/*-12 && (r1norm < (this->u_r1) || rmaxnorm < (this->u_rmax))*/)){ //{1, 0.6} funcionen millor sense Hamming
         return true;
       }
       else{
