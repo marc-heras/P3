@@ -33,9 +33,6 @@ Options:
     --preprocess <type> Preprocessing type [default: none].
                         Type can be:
                         - 'clip': central clipping
-    --postprocess <type> Postprocessing type [default: none].
-                        Type can be:
-                        - 'median': median filter.
     --median <size>     Size of the median filter [default: 1].
     
 Arguments:
