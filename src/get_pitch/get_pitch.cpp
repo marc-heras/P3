@@ -79,18 +79,25 @@ int main(int argc, const char *argv[]) {
   /// Preprocess the input signal in order to ease pitch estimation. For instance,
   /// central-clipping or low pass filtering may be used.
   vector<float>::iterator iX;
+
+  //---------------------------------------
+  /*
   //if(preprocess_type == "clip") {
       for (iX = x.begin(); iX != x.end(); ++iX) {
         float amp = *iX;
-        if (amp*amp < 0.000001) {
+        if (amp < 150 && amp > 0) {
+          *iX = 0;
+        }
+        else if(amp > -150 && amp < 0) {
           *iX = 0;
         }
       }
   //}
+  */
   //else if(preprocess_type == "lowpass") {
 
   //}*/
-
+  //---------------------------------------
 
   // Iterate for each frame and save values in f0 vector
   //vector<float>::iterator iX;

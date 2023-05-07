@@ -66,6 +66,68 @@ Ejercicios básicos
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
 	`pitch_db/train`..
 
+  **Tasas de error:**
+
+MSE of fine errors:     2.25 %
+MSE of fine errors:     8.90 %
+MSE of fine errors:     2.38 %
+MSE of fine errors:     3.09 %
+MSE of fine errors:     2.68 %
+MSE of fine errors:     1.73 %
+MSE of fine errors:     11.87 %
+MSE of fine errors:     3.97 %
+MSE of fine errors:     12.13 %
+MSE of fine errors:     3.95 %
+MSE of fine errors:     2.47 %
+MSE of fine errors:     1.61 %
+MSE of fine errors:     3.64 %
+MSE of fine errors:     1.97 %
+MSE of fine errors:     2.48 %
+MSE of fine errors:     3.38 %
+MSE of fine errors:     3.53 %
+MSE of fine errors:     1.76 %
+MSE of fine errors:     2.43 %
+MSE of fine errors:     3.11 %
+MSE of fine errors:     3.93 %
+MSE of fine errors:     2.77 %
+MSE of fine errors:     2.20 %
+MSE of fine errors:     3.12 %
+MSE of fine errors:     1.51 %
+MSE of fine errors:     2.93 %
+MSE of fine errors:     3.45 %
+MSE of fine errors:     1.94 %
+MSE of fine errors:     1.69 %
+MSE of fine errors:     2.72 %
+MSE of fine errors:     1.60 %
+MSE of fine errors:     2.28 %
+MSE of fine errors:     2.44 %
+MSE of fine errors:     3.10 %
+MSE of fine errors:     3.76 %
+MSE of fine errors:     3.06 %
+MSE of fine errors:     2.68 %
+MSE of fine errors:     2.37 %
+MSE of fine errors:     1.77 %
+MSE of fine errors:     2.79 %
+MSE of fine errors:     2.46 %
+MSE of fine errors:     2.58 %
+MSE of fine errors:     2.62 %
+MSE of fine errors:     2.77 %
+MSE of fine errors:     2.33 %
+MSE of fine errors:     2.61 %
+MSE of fine errors:     2.90 %
+MSE of fine errors:     2.08 %
+MSE of fine errors:     2.09 %
+MSE of fine errors:     1.78 %
+
+ Summary
+Num. frames:    11200 = 7045 unvoiced + 4155 voiced
+Unvoiced frames as voiced:      503/7045 (7.14 %)
+Voiced frames as unvoiced:      358/4155 (8.62 %)
+Gross voiced errors (+20.00 %): 230/3797 (6.06 %)
+MSE of fine errors:     3.11 %
+
+===>    TOTAL:  87.82 %
+
 Ejercicios de ampliación
 ------------------------
 
@@ -78,6 +140,11 @@ Ejercicios de ampliación
 
   * Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización
     con los argumentos añadidos.
+
+    En el siguiente pantallazo se ve el mensaje de ayuda que muestra el programa con las distintas opciones y sus valores por defecto. A continuación, el siguiente comando muestra un modo de empleo de estas opciones:
+![captura](img/imagen_6.png)
+La opción de preprocesado ha dado problemas y, aunque se puede ver su implementación en el código, se ha comentado y no tiene funcionalidad. Por ello, no se muestra en el ejemplo de utilización.
+
 
 - Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de estimación
   de pitch.
@@ -107,6 +174,8 @@ Una parte de ampliación llevada a cabo es la del filtro de mediana como postpro
 A continuación se adjunta un gráfico en el que se pueden observar en la parte inferior (las tres últimas, respectivamente) el fichero f0 obtenido con el programa sin mediana, el fichero f0ref y el fichero f0 con el filtro de mediana aplicado de medida 3:
    ![captura](img/imagen_3.png)
 
+Para el preprocesado aplicamos un clipping sin offset. Es decir,  eliminamos los valores por encima de un valor, en este caso ±150 para poner a cero los instantes de tiempo en que la señal tiene una amplitud menor. Para ello nos fijamos en la señal en wavesurfer y extraemos un límite. Los valores que se sitúan fuera de dicho rango son puestos a cero.
+En este caso el resultado se veía seriamente afectado, lo que nos ha hecho pensar que había algun error en su código que no hemos sido capaces de reparar. Es por esto que se encuentra comentado, aunque hemos mantenido la opción en el docopt que no tiene ninguna funcionalidad.
 
 Evaluación *ciega* del estimador
 -------------------------------
