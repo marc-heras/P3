@@ -62,17 +62,17 @@ namespace upc {
     /// \TODO Implement a rule to decide whether the sound is voiced or not.
     /// * You can use the standard features (pot, r1norm, rmaxnorm),
     ///   or compute and use other ones.
-    if(true){
+    //if(true){
       if((r1norm < this->u_r1 && rmaxnorm < this->u_rmax) || (pot < -12 && (r1norm < this->u_r1 || rmaxnorm < this->u_rmax))){ //{1, 0.6} funcionen millor sense Hamming
         return true;
       }
       else{
         return false;
       }
-    }
-    else{
-      return true;
-    }
+    //}
+    //else{
+    //  return true;
+    //}
   }
 
   float PitchAnalyzer::compute_pitch(vector<float> & x) const {
@@ -99,8 +99,10 @@ namespace upc {
 	/// In either case, the lag should not exceed that of the minimum value of the pitch.
     /// FET
     vector<float>::iterator iRNeg = r.end();
+    //unsigned int control_picks = 0;
     for (vector<float>::iterator it = r.begin(); it != r.end(); ++it) {
-      if (*it < 0) {
+      /*control_picks += 1;*/
+      if (*it < 0/* && control_picks > samplingFreq/600*/) {
         iRNeg = it;
         break;
       }
@@ -109,7 +111,6 @@ namespace upc {
     iRMax=std::max_element(iRNeg, r.end());
 
     unsigned int lag = iRMax - r.begin();
-
 
     float pot = 10 * log10(r[0]);
 
